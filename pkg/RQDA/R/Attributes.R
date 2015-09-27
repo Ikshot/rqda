@@ -329,6 +329,8 @@ viewCaseAttr <- function(){
 
 viewFileAttr <- function(){
   DF <- dbGetQuery(.rqda$qdacon,"select variable,value, fileId from fileAttr where status=1")
+  DF$variable<-iconv(DF$variable,from="UTF8",to="1251")
+  DF$value<-iconv(DF$value,from="UTF8",to="1251")
   DF <- reshape(DF,v.names="value",idvar="fileID",direction="wide",timevar="variable")
   names(DF) <- gsub("^value.","",names(DF))
   fileName <- dbGetQuery(.rqda$qdacon,"select name,id from source where status=1")

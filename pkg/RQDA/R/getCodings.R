@@ -88,7 +88,7 @@ getCodingsFromFiles <- function(Fid, order=c("fname","ftime","ctime"), codingTab
         iter <- buffer$getIterAtOffset(0)$iter
 
         apply(retrieval,1, function(x){
-            metaData <- sprintf("[%s] - %s [%i:%i]",x[["code"]], x[['fname']],as.numeric(x[['selfirst']]),as.numeric(x[['selend']]))
+            metaData <- sprintf("[%s] - %s [%i:%i]",iconv(x[["code"]],from="UTF8",to="1251"), x[['fname']],as.numeric(x[['selfirst']]),as.numeric(x[['selend']]))
             ## buffer$InsertWithTagsByName(iter, metaData,"x-large","red")
             buffer$InsertWithTagsByName(iter, metaData,"red")
             anchorcreated <- buffer$createChildAnchor(iter)
